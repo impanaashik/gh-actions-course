@@ -7,11 +7,18 @@ on :
         debug:
           type: boolean
           default: false
+env:
+  global_env : "abc"
+  globals_env : "abc" 
 jobs :
     echo-data:
         runs-on : ubuntu-latest
+        env:
+          global_env: job1
+          globals_env: job1
         steps:
             - name : Display Information
+
               run : |
                 echo "Event name: ${{github.event_name}}"
                 echo "Ref:${{github.ref}}"
@@ -23,4 +30,12 @@ jobs :
             - name :  retreive variable
               run : |
                 echo "varaiable value ${{vars.MY_VAR}}"
+                echo "global varaiable ${{env.globals_env}}"
+            - name : print env varaiable
+              env :
+                global_env: step1
+              run : |
+                echo "global varaiable ${{env.global_env}}"
+                echo "globals varaiable ${{env.globals_env}}"
+
 
