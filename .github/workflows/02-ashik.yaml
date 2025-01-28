@@ -1,0 +1,18 @@
+name : ashik-test-execution
+on :
+  - workflow_dispatch
+jobs :
+  my-first-job:
+    runs-on : ubuntu-latest
+    steps :
+      - name : this will execute
+        run : echo "success"
+  second-job:
+    runs-on : ubuntu-latest
+    steps :
+      - name : This will fail"
+        run : |
+          echo "failure"
+          exit 1     
+    
+
