@@ -1,0 +1,24 @@
+name : 07-ashik-expression
+run-name : 07-ashik-expression | DEBUG - {{inputs.debug && 'ON' || 'OFF'}}
+on:
+  workflow_dispatch:
+    inputs:
+      debug:
+        type: boolean
+        default: false
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name : '[debug] print start up data'
+        if: ${{inputs.debug}} == True
+        run : |
+          echo "Print Trigger ${{github.event_name}}"
+          echo "print branch ${{github.ref}}"
+          echo "print SHA ${{github.sha}}"
+      - name : '[debug] check if trigger is WD and branch is main'
+        if : ${{inputs.debug}} && github.ref == 'refs/heads/main'
+        run : |
+          echo "it is triggered from main branch"
+          echo "Thank you"
+
