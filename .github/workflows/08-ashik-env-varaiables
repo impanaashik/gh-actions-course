@@ -1,0 +1,17 @@
+name : ashik variuable test
+on:
+  workflow_dispatch
+env:
+  WORKFLOW_VAR : abc
+  WORKFLOW_OVERWRITTEN: XYZ
+
+jobs:
+  TESTING VARAIABLES
+    runs-on : ubuntu-latest
+    steps:
+      - name : print jobs and worklow varaiable
+        env:
+          WORKFLOW_OVERWRITTEN: 000
+        run : |
+          echo "step varaiable : ${{env.WORKFLOW_OVERWRITTEN}}"
+          echo "workflow varaiable : ${{env.WORKFLOW_VAR}}"
