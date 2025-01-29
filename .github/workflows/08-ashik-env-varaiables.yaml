@@ -11,7 +11,7 @@ jobs:
     steps:
       - name : print jobs and worklow varaiable
         env:
-          WORKFLOW_OVERWRITTEN: 000
+          WORKFLOW_OVERWRITTEN: "000"
         run : |
           echo "step varaiable : ${{env.WORKFLOW_OVERWRITTEN}}"
           echo "workflow varaiable : ${{env.WORKFLOW_VAR}}"
