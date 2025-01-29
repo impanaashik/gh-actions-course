@@ -1,5 +1,5 @@
 name : 07-ashik-expression
-run-name : 07-ashik-expression | DEBUG - {{inputs.debug}}
+run-name : 07-ashik-expression | DEBUG - {{inputs.debug && 'ON' || 'OFF'}}
 on:
   workflow_dispatch:
     inputs:
