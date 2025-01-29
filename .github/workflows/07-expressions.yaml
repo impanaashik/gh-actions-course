@@ -1,0 +1,27 @@
+name : 07 - Using Expressions
+run-name : 07 - Using Expressions | DEBUG - {{inputs.debug}}
+on:
+    push:
+    workflow_dispatch:
+        inputs:
+            debug:
+                type: boolean
+                default: false
+
+
+jobs:
+    echo:
+        runs-on : ubuntu-latest
+        steps:
+            - name : '[debug] Print start-up data'
+            - if: ${{inputs.debug}} == True
+             run: |
+             echo "triggered by : ${{github.event_name}}"
+             echo "branch : ${{github.branch}}"
+             echo "commit SHA : ${{github.sha}}"
+            - name :'[debug] Print when triggered from main'
+            - if: inputs.debug && github.branch == refs/heads/main
+              run : |
+               echo "Debug is true and branch is main so succesfull"
+            
+
