@@ -1,0 +1,24 @@
+name : 08 - Using Variables
+on:
+  workflow_dispatch:
+
+env:
+  WORKFLOW_VAR : "I AM A WORKFLOW VAR"
+  WORKFLOW_OVERWRIITEN : "I AM OVERWRITTEN in workflow"
+jobs:
+  variables-validation:
+    runs-on : ubuntu-latest
+    env:
+      WORKFLOW_OVERWRIITEN : "I AM OVERWRITTEN by JOB"
+    steps:
+      - name : check the variables
+        env:
+          STEP_VAR : " I AM A STEP VAR"
+          WORKFLOW_OVERWRIITEN : "I AM OVERWRITTEN ny step"
+        run : |
+          echo "STEP_VAR : ${{env.STEP_VAR}}"
+          echo "WORKFLOW_OVERWRIITEN : ${{env.WORKFLOW_OVERWRIITEN}}"
+      - name : print job varaiable
+        run : |
+          echo "WORKFLOW_OVERWRIITEN : ${{env.WORKFLOW_OVERWRIITEN}}" 
+
