@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name : '[debug] print start up data'
-        if: ${{inputs.debug}} == false
+        if: inputs.debug
         run : |
           echo "Print Trigger ${{github.event_name}}"
           echo "print branch ${{github.ref}}"
