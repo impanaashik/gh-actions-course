@@ -11,13 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name : '[debug] print start up data'
-        if: inputs.debug
+        if: ${{inputs.debug == false}}
         run : |
           echo "Print Trigger ${{github.event_name}}"
           echo "print branch ${{github.ref}}"
           echo "print SHA ${{github.sha}}"
       - name : '[debug] check if trigger is WD and branch is main'
-        if : ${{inputs.debug}} && github.ref == 'refs/heads/main'
+        if : ${{inputs.debug && github.ref == 'refs/heads/main'}}
         run : |
           echo "Print debug ${{inputs.debug}}"
           echo "print branch ${{github.ref}}"
