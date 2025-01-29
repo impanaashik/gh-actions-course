@@ -6,7 +6,7 @@ env:
   WORKFLOW_OVERWRITTEN: XYZ
 
 jobs:
-  TESTING VARAIABLES
+  TESTING-VARAIABLES:
     runs-on : ubuntu-latest
     steps:
       - name : print jobs and worklow varaiable
