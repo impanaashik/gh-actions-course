@@ -1,5 +1,5 @@
 name : 07-ashik-expression
-run-name : 07-ashik-expression | DEBUG - {{inputs.debug && 'ON' || 'OFF'}}
+run-name : 07-ashik-expression | DEBUG - {{inputs.debug}}
 on:
   workflow_dispatch:
     inputs:
@@ -13,10 +13,9 @@ jobs:
       - name : '[debug] print start up data'
         if: ${{inputs.debug}} == false
         run : |
-          exit 1
-          # echo "Print Trigger ${{github.event_name}}"
-          # echo "print branch ${{github.ref}}"
-          # echo "print SHA ${{github.sha}}"
+          echo "Print Trigger ${{github.event_name}}"
+          echo "print branch ${{github.ref}}"
+          echo "print SHA ${{github.sha}}"
       - name : '[debug] check if trigger is WD and branch is main'
         if : ${{inputs.debug}} && github.ref == 'refs/heads/main'
         run : |
