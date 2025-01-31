@@ -1,0 +1,29 @@
+name: UNDEFINED_VAR_WITH_DEFAULT
+on:
+  workflow_dispatch:
+env:
+  UNDEFINED_VAR : Ashik
+
+jobs:
+  echo2:
+    runs-on: ubuntu-latest
+    environment : staging
+    steps:
+    - name : print staging variables
+      run: |
+        echo "Repo var: ${{vars.TARGET_VAR}}"
+  echo-prod:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name : Print Prod Variables
+        run : |
+          echo "Repo var: ${{vars.OVERWRITTEN_VAR}}" 
+          echo "Environment var: ${{vars.TARGET_VAR}} "
+  echo-undefined:
+    runs-on: ubuntu-latest
+    steps:
+      - name : Print Undefined Variables
+        run : echo "${{env.UNDEFINED_VAR}}"
+         
+
