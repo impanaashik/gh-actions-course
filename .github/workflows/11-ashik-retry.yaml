@@ -1,0 +1,36 @@
+name : ashik-inputs-target-tags
+on:
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: you dedide and check this box
+        type: boolean
+        default: false
+      target:
+        type: environment
+        required: true
+        description: select the available environment
+      tags:
+        type: choice
+        options:
+          - V1
+          - V2
+          - V3
+        default: V2
+        description: select the release version 
+jobs:
+  Deploy-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name : Bulid execution
+        run : echo "Build environment is ${{inputs.target}}"
+  Deployment:
+    runs-on: ubuntu-latest
+    needs: Deploy-build
+    steps:
+      - name : Deployment Happening
+        if: ${{ !inputs.dry-run }}
+        run : echo "the release is now ${{inputs.tags}}"
+        
+
+      
