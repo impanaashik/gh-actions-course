@@ -1,17 +1,15 @@
-name:09-ashik-functions
+name : 09-ashik-functions
 on:
-  # push:
   workflow_dispatch:
     
 jobs:
-   echo1:
-    runs:on: ubuntu-latest
+  echo1:
+    runs-on: ubuntu-latest
     steps:
       - name : Sleep for 10 seconds
         run : sleep 20
       - name : Failing step
-        run : |
-          exit 1
+        run : exit 1
       - name : I will be skipped
         if: ${{ success() }}
         run : |
@@ -23,9 +21,8 @@ jobs:
       - name :  I will execute
         if: ${{ !cancelled() }}
         run : |
-          echo " I will always print, except when the workflow is cancelled.""
+            echo " I will always print, except when the workflow is cancelled."
       - name : I will execute when cancelled
         if: ${{ cancelled() }}
         run : |
-          echo " when the workflow has been cancelled"
-            
+            echo " when the workflow has been cancelled"  
