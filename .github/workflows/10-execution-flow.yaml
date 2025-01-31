@@ -50,7 +50,7 @@ jobs:
       - load-tests
     steps:
       - name : Deploying to prod
-        if: ${{ success() }}
+        if: ${{ always() }}
         run : |
           echo : "Deploying to prod"  
 
