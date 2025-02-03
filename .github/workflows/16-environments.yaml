@@ -1,21 +1,23 @@
-name: 16 - Working with Environments
-run-name: 16 - Working with Environments | env - ${{inputs.target-env}}
+name: ashik-env-execution
+run-name : Choose the env for executions || env - ${{inputs.target-platform}}
 on:
   workflow_dispatch:
     inputs:
-      target-env:
-        type: environment 
-        default: prod
+      target-platform:
+        type: environment
+        default: dev
 jobs:
-  echo :
-    runs-on: ubuntu-latest
-    environment: ${{inputs.target-env}}
+  echo-environment:
+    environment: ${{inputs.target-platform}} 
     env:
-      my-env-value: ${{ vars.MY_ENV_VALUE || 'default value'}}
+      my-env-value: ${{ vars.MY_ENV_VALUE || 'ashik'}}
+
+    runs-on : ubuntu-latest
     steps:
-      - name: Echo vars
+      - name : deployment
         run : |
-          echo "Env variable: ${{ env.my-env-value }} "
+          echo " env : ${{inputs.target-platform}} "
+          echo "${{inputs.target-platform}} value is ${{ env.my-env-value}}"      
 
 
 
