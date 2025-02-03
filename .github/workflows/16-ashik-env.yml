@@ -1,5 +1,5 @@
 name: ashik-env-execution
-run-name : Choose the env for execution || env - ${{inputs.target-platform}}
+run-name : Choose the env for executions || env - ${{inputs.target-platform}}
 on:
   workflow_dispatch:
     inputs:
