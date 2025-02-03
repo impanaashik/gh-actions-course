@@ -1,0 +1,20 @@
+name: ashik-env-execution
+run-name : Choose the env for executions || env - ${{inputs.target-platform}}
+on:
+  workflow_dispatch:
+    inputs:
+      target-platform:
+        type: environment
+        default: dev
+jobs:
+  echo-environment:
+    environment: ${{inputs.target-platform}} 
+    env:
+      my-env-value: ${{ vars.MY_ENV_VALUE || 'ashik'}}
+
+    runs-on : ubuntu-latest
+    steps:
+      - name : deployment
+        run : |
+          echo " env : ${{inputs.target-platform}} "
+          echo "${{inputs.target-platform}} value is ${{ env.my-env-value}}"      
